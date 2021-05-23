@@ -2,6 +2,9 @@
 let changeColor = document.getElementById("changeColor");
 
 
+
+
+
 // When the button is clicked, inject disableSyntaxHighlight into current page
 changeColor.addEventListener("click", async () => {
     let [tab] = await chrome.tabs.query({active: true, currentWindow: true});
@@ -12,51 +15,79 @@ changeColor.addEventListener("click", async () => {
     });
 });
 
+
+
+
+
+
 // The body of this function will be execuetd as a content script inside the
 // current page
-function disableSyntaxHighlight() {
-    // let elementsByClass = document.querySelectorAll(".cm-s,.cm-meta,.cm-keyword,.cm-atom,.cm-number,.cm-def,.cm-variable,.cm-variable,.cm-variable,.cm-property,.cm-operator,.cm-comment,.cm-string,.cm-string,.cm-error,.cm-qualifier,.cm-builtin,.cm-bracket,.cm-tag,.cm-attribute,.CodeMirror-matchingbracket,.CodeMirror-nonmatchingbracket,.CodeMirror-matchingtag,.CodeMirror-nonmatchingtag");
-    // for (let i = 0; i < elementsByClass.length; i++) {
-    //     let element = elementsByClass[i];
-    //     element.style.color = "black";
+async function disableSyntaxHighlight() {
+
+
+    // let nameLink = document.getElementsByClassName('msg-thread__link-to-profile');
+    // console.log(`nameLink length is ${nameLink.length}`)
+    // for (let i = 0; i < nameLink.length; i++) {
+    //     let element = nameLink[i];
+    //     console.log(`element is ${element}`)
+    //     nameLinks += element.innerText;
     // }
-
-
-    let nameLink = document.getElementsByClassName('msg-thread__link-to-profile');
-    console.log(`nameLink length is ${nameLink.length}`)
-    for (let i = 0; i < nameLink.length; i++) {
-        let element = nameLink[i];
-        console.log(`element is ${element}`)
-    }
 
     
     let headerText = document.getElementsByClassName('msg-s-event-listitem__subject');
     console.log(`headerText length is ${headerText.length}`)
+    let nameLinks = '';
+    let senderName = '';
+    let subjectText = '';
+    let bodyTxt = '';
+    let msgUrl = '';
     for (let i = 0; i < headerText.length; i++) {
-        let element = headerText[i];
+        let element = headerText[i].innerText;
         console.log(`element is ${element.innerText}`)
+        subjectText += element;
     }
 
-    
 
     let bodyText = document.getElementsByClassName('msg-s-event-listitem__body');
-    console.log(`headerText length is ${headerText.length}`)
-    for (let i = 0; i < headerText.length; i++) {
-        let element = headerText[i];
+    console.log(`bodyText length is ${bodyText.length}`)
+    for (let i = 0; i < bodyText.length; i++) {
+        let element = bodyText[i].innerText;
         console.log(`element is ${element.innerText}`)
+        bodyTxt += element;
     }
 
-    console.log("test")
+
     let senderNameElement = document.getElementById('thread-detail-jump-target');
     console.log(senderNameElement.innerText);
-
+    senderName = senderNameElement.innerText;
 
     var currentUrl = window.location.href;
     console.log(`currentUrl is ${currentUrl}`);
+    msgUrl = currentUrl;
 
 
-    //todo: try using MutationOberserver to listen to CodeMirror-lines class
+    let linkedinData = {
+        name: senderName,
+        subject: subjectText,
+        body: bodyTxt,
+        link: msgUrl
+    }
 
 
+    // arr[1][0] = await chrome.storage.local.get(['senderName'], function(result) {
+    //     console.log('Value currently is ' + result.key);
+    // });
+
+
+
+    chrome.runtime.sendMessage({greeting: "hello", linkedinData: linkedinData}, function(response) {
+        console.log("response is " + JSON.stringify(response));
+
+    });
 
 }
+
+
+
+
+
