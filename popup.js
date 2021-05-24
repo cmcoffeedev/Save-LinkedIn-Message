@@ -43,7 +43,7 @@ async function disableSyntaxHighlight() {
     let msgUrl = '';
     for (let i = 0; i < headerText.length; i++) {
         let element = headerText[i].innerText;
-        console.log(`element is ${element.innerText}`)
+        console.log(`element is ${element}`)
         subjectText += element;
     }
 
@@ -52,7 +52,7 @@ async function disableSyntaxHighlight() {
     console.log(`bodyText length is ${bodyText.length}`)
     for (let i = 0; i < bodyText.length; i++) {
         let element = bodyText[i].innerText;
-        console.log(`element is ${element.innerText}`)
+        console.log(`element is ${element}`)
         bodyTxt += element;
     }
 
@@ -72,11 +72,6 @@ async function disableSyntaxHighlight() {
         body: bodyTxt,
         link: msgUrl
     }
-
-
-    // arr[1][0] = await chrome.storage.local.get(['senderName'], function(result) {
-    //     console.log('Value currently is ' + result.key);
-    // });
 
 
 
