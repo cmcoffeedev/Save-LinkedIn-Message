@@ -1,0 +1,36 @@
+button {
+  background-color: blue; 
+  color: white;
+  margin-top: 20px;
+  border-radius: 8px;
+  outline: none;
+  padding: 4px;
+}
+
+
+#saveMsgContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+}
+
+
+#saveMsgBody{
+  background-color: lightgray;
+}
+
+#leetText{
+  color: orange;
+}
+
+button.current {
+  box-shadow: 0 0 0 2px white,
+              0 0 0 4px black;
+}
+
+h2{
+  text-align: center;
+  text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+}
