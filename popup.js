@@ -10,11 +10,24 @@ saveBtn.addEventListener("click", async () => {
     });
 });
 
+let sheetsBtn = document.getElementById("sheetsBtn");
+
+// When the button is clicked, inject disableSyntaxHighlight into current page
+sheetsBtn.addEventListener("click", async () => {
+    let [tab] = await chrome.tabs.query({active: true, currentWindow: true});
+
+    chrome.scripting.executeScript({
+        target: {tabId: tab.id},
+        function: openUrl,
+    });
+});
+
+
 
 
 // The body of this function will be execuetd as a content script inside the
 // current page
-async function getLinkedInMsgData() {
+const getLinkedInMsgData = async() => {
 
 
     // let nameLink = document.getElementsByClassName('msg-thread__link-to-profile');
@@ -71,6 +84,19 @@ async function getLinkedInMsgData() {
         // console.log("response is " + JSON.stringify(response));
     });
 
+}
+
+
+const openUrl = () =>{
+    chrome.storage.sync.get('spreadsheetId', function (result) {
+        // console.log('Value result  currently is ' + JSON.stringify(result));
+        // console.log('Value currently is ' + result.spreadsheetId);
+        let spreadsheetId = result.spreadsheetId
+        if (spreadsheetId === undefined) {
+        } else {
+            window.open(`https://docs.google.com/spreadsheets/d/${spreadsheetId}/edit`, "_blank");
+        }
+    });
 }
 
 
