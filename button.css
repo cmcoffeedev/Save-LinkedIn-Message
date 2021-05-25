@@ -1,13 +1,14 @@
 button {
-  background-color: orange;
+  background-color: blue; 
+  color: white;
   margin-top: 20px;
   border-radius: 8px;
   outline: none;
-  padding: 2px;
+  padding: 4px;
 }
 
 
-#leetCoffeeContainer{
+#saveMsgContainer{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,15 +16,8 @@ button {
   padding: 8px;
 }
 
-#leetCoffeeTitleContainer{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
 
-#leetCoffeeBody{
+#saveMsgBody{
   background-color: lightgray;
 }
 
