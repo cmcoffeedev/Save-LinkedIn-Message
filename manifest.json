@@ -5,6 +5,7 @@
   "manifest_version": 3,
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiPUrZGy9r5hT9ogrw+dTc6Q8t20LUKWSavi479tEPNmcEMeabIrMZXZkXO2YkN5/sJu5j7sPfDGHEG9zkSm9NTKt7ugN0hXa8FFmzT5YNXaINW/Ska41UnKTDwNA+MzfFPXM+Hy9sMf2CBBGHW3A4yLOWpoOSPyEsBYQwUV4QAHEuJrwwvjplyOjOEH89odWKBjEPsRZx3IWWcfkgaRYkT0irJ+m/RzgPDzB8Yt3KWjnUFp3ZA5CxlenwaVf7tbaRCSPIGc0/7d2+X6S8GF54LqvaeV6eAU7C8YSZMUFiChSU8o+VTpq9dYGqZI23cTG4YYXnpyn4tcyFafTlsM64QIDAQAB",
   "permissions": [
+    "activeTab",
     "scripting",
     "storage",
     "identity"
@@ -36,7 +37,7 @@
   "content_scripts": [
     {
       "matches": [
-        "http://*.linkedin.com/*"
+        "https://*.linkedin.com/*"
       ],
       "js": [
         "sheetUtils.js"
