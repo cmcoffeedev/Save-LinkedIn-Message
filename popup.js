@@ -75,7 +75,8 @@ const getLinkedInMsgData = async() => {
         name: senderName,
         subject: subjectText,
         body: bodyTxt,
-        link: msgUrl
+        link: msgUrl,
+        date: new Date()
     }
 
 
